@@ -1,5 +1,5 @@
 # ReactJS Offline Music PLayer Experiment
-> by Rob "Rex" Beatie (rdev1163@outlook.com)[mailto:rdev1163@outlook.com]
+> by Rob "Rex" Beatie [rdev1163@outlook.com](mailto:rdev1163@outlook.com)
 
 
 # Concept
