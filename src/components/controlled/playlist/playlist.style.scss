@@ -1,0 +1,46 @@
+.playlist-container {
+  border: #2b0004 solid 2px;
+  @include media-player-glow($glow-primary-color, $glow-secondary-color);
+
+  .tracks-container {
+    background: url("/bike-red-strip.jpg") no-repeat;
+    background-size: cover;
+
+    .track-container:nth-child(odd){
+      background: rgba(150, 183, 195, 0.69);
+    }
+    .track-container:nth-child(even){
+      background: rgba(255, 198, 85, 0.74);
+
+    }
+  }
+
+  .playlist-background {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    svg {
+      width: 100%;
+    }
+  }
+
+  .track-container {
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #ececec;
+    margin-bottom: 3px;
+    @include transition();
+
+    &:hover {
+      background: #f9eeb6;
+    }
+  }
+
+  .details, .stats {
+    display: flex;
+    flex-direction: row;
+  }
+}

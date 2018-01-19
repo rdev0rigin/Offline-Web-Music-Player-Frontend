@@ -1,0 +1,257 @@
+.media-player-container {
+  position: fixed;
+  top: 5px;
+  height: fit-content;
+  width: 100%;
+  max-width: 520px;
+  display: grid;
+  grid-template-rows: 180px;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+          "controls"
+          "playlist";
+  @include media-player-glow($glow-primary-color, $glow-secondary-color);
+
+  .display-container {
+    grid-area: display;
+  }
+
+  .controls-container {
+    grid-area: controls;
+  }
+
+  .playlist-container {
+    grid-area: playlist;
+  }
+
+  .controls-container {
+    @include media-player-inner-glow();
+    display: grid;
+    grid-template-columns: 100% 1fr;
+    grid-template-rows: 55px;
+    background: $media-player-controls-bg;
+    padding: 5px;
+    padding-top: 10px;
+    width: 100%;
+    border-bottom: $divider-color 3px solid;
+    grid-template-areas:
+            "mid-panel"
+            "bottom-panel"
+            "top-panel";
+    div.bottom-panel, div.top-panel, div.mid-panel {
+      height: 100%;
+    }
+
+    div.top-panel {
+      grid-area: top-panel;
+      display: grid;
+      grid-template-rows: repeat(2, calc(100% / 2));
+      grid-template-columns: 1fr;
+      grid-template-areas: "duration-range";
+
+    }
+
+    div.mid-panel {
+      grid-area: mid-panel;
+      display: grid;
+      align-items: center;
+      grid-template-columns: 25% 25% 50%;
+      grid-template-rows: 1fr;
+      grid-template-areas: "volume full display";
+
+      .duration-range {
+        grid-area: duration-range;
+      }
+
+      .display {
+        grid-area: display;
+        background: $primary-color-background;
+        color: #e7e7e7;
+        font-family: $primary-font;
+      }
+
+      .volume {
+        grid-area: volume;
+        display: flex;
+        justify-content: space-between;
+        svg {
+          margin-right: 10px;
+          margin-left: 10px;
+          height: 100%;
+          width: 24px;
+          fill: white;
+        }
+
+        input{
+          width: 75%;
+        }
+      }
+
+      .full {
+        display: flex;
+        justify-content: center;
+        grid-area: full;
+        svg {
+          fill: white;
+          width: 24px;
+          height: 100%;
+        }
+      }
+    }
+
+    div.bottom-panel {
+      grid-area: bottom-panel;
+      display: grid;
+      grid-template-columns: repeat(7, calc(95% / 7));
+      grid-gap: 15px;
+      grid-template-rows: 30px;
+      grid-template-areas: "offset-0 prev back play-pause forward next";
+      margin: auto;
+      max-width: 320px;
+
+      .offset-0 {
+        grid-area: offset-0;
+      }
+
+      .prev {
+        grid-area: prev;
+      }
+
+      .back {
+        grid-area: back;
+      }
+
+      .play-pause {
+        grid-area: play-pause;
+      }
+
+      .forward {
+        grid-area: forward;
+      }
+
+      .next {
+        grid-area: next;
+      }
+
+      // player buttons
+      div {
+        padding: 3px;
+        border-radius: 100%;
+        box-shadow: 5px -2px 1px -3px rgba(255, 255, 255, 0.35),
+        0 0 4px 3px rgba(0, 0, 0, 0.7),
+        6px -1px 0 -2px rgba(0, 0, 0, 0.3),
+        0 0 12px rgba(68, 168, 255, 0.7);
+      }
+
+      svg {
+        fill: #aab9cd;
+        stroke: rgba(236, 236, 236, 0.7);
+        stroke-width: 1px;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .display-container {
+    max-width: 720px;
+
+    video {
+      max-width: 320px;
+      min-width: 100%;
+    }
+  }
+
+  .duration-range {
+    .time {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      color: white;
+      font-family: "Droid Sans Mono";
+      font-size: 1.2pc;
+
+      .current {
+        margin-left: 5px;
+      }
+
+      .duration {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  @mixin inputRange() {
+    border: 1px solid #44a8ff;
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    background: #ffffff;
+    cursor: pointer;
+    margin-top: -5px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+  }
+
+  /* Special styling for WebKit/Blink */
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    @include inputRange;
+  }
+
+  /* All the same stuff for Firefox */
+  input[type=range]::-moz-range-thumb {
+    @include inputRange;
+  }
+
+  /* All the same stuff for IE */
+  input[type=range]::-ms-thumb {
+    @include inputRange;
+  }
+
+  @mixin inputRangeSlider() {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: #47a8fa;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+
+  }
+;
+  input[type=range]::-webkit-slider-runnable-track {
+    @include inputRangeSlider;
+  }
+
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #367ebd;
+  }
+
+  input[type=range]::-moz-range-track {
+    @include inputRangeSlider;
+  }
+
+  input[type=range]::-ms-track {
+    @include inputRangeSlider;
+  }
+
+  input[type=range]::-ms-fill-lower {
+    background: #2a6495;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  }
+  input[type=range]:focus::-ms-fill-lower {
+    background: #3071a9;
+  }
+  input[type=range]::-ms-fill-upper {
+    background: #3071a9;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  }
+  input[type=range]:focus::-ms-fill-upper {
+    background: #367ebd;
+  }
+}

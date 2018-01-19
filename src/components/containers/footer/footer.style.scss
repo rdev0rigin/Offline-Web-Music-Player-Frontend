@@ -1,0 +1,42 @@
+.footer-component {
+  color: white;
+  margin: auto;
+  width: 100%;
+  background: $background-footer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  //bottom: 0;
+  padding-bottom: 30px;
+
+  a {
+    color: #ffbc27;
+    text-decoration: none;
+    font-size: 22px;
+    font-family: $article-family;
+  }
+
+  .lists {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px;
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+  }
+
+  .copy-rights {
+    font-family: $primary-font;
+    font-weight: 600;
+    font-size: 16px;
+    color: #0b0d0f;
+  }
+}

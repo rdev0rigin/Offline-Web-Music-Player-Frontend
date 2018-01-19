@@ -1,0 +1,119 @@
+$border-radius: 5%;
+
+.admin-component {
+  text-align: center;
+
+  .new-track-form {
+    background: gainsboro;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px;
+  }
+
+  .file-submit {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px;
+  }
+
+  .new-file {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #New-Sound {
+    justify-content: center;
+  }
+
+  .text-input {
+    border: #87f1f9 solid 3px;
+    padding: 10px;
+  }
+
+  label {
+    font-size: 1.2pc;
+    font-family: $header-font;
+    font-weight: 700;
+  }
+
+}
+
+.track-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: gainsboro;
+  box-shadow: 5px 2px 12px rgba(0, 0, 0, 0.7);
+  margin-bottom: 5px;
+  width: 80%;
+  top: 50%;
+  left: 50%;
+  padding: 10px;
+  transform: translate(-50%);
+  position: relative;
+
+}
+
+.track-details-container .track-details .track-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.track-play {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background: #2a6495;
+  border-radius: 100%;
+
+  svg {
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-45%, -50%);
+    position: absolute;
+    fill: white;
+    cursor: pointer;
+  }
+}
+
+.login-component {
+
+  .local-submit {
+      cursor: pointer;
+  }
+
+  .sign-in-form {
+    box-shadow: black 7px 7px 22px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  label {
+    font-size: 1.2pc;
+    font-family: $header-font;
+    font-weight: 700;
+    color: white;
+  }
+
+  input {
+    color: white;
+    border: rgba(152, 3, 0, 0.82) solid 3px;
+    padding: 10px;
+      background-color: transparent;
+  }
+
+  .twitter {
+    padding: 20px;
+  }
+}

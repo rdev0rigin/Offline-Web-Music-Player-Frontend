@@ -1,0 +1,85 @@
+.actionButtonShutter {
+  .actionBtn13,.actionBtn13 span {
+    display:block;
+  }
+  .actionBtn13 .tabs {
+    position:relative;
+    display:inline-block;
+    overflow:hidden;
+    width:60px;
+    height:60px;
+    margin-left:-1px;
+    background-color:#e7e7e7;
+    border:1px solid #444;
+    transition:all ease-in-out .3s;
+    -webkit-transition:all ease-in-out .3s;
+    -moz-transition:all ease-in-out .3s;
+  }
+  .actionBtn13 .tabs:hover {
+    width:278px;
+  }
+  .actionBtn13 .tabs:hover .more_ico:before {
+    margin-left:-60px;
+  }
+  .actionBtn13 .tabs:hover .more_ico:after {
+    margin-left:0px;
+  }
+  .actionBtn13 .tabs .more_ico {
+    height:0;
+    text-indent:-9999px;
+  }
+  .actionBtn13 .tabs .more_ico:after,.actionBtn13 .tabs .more_ico:before {
+    position:absolute;
+    display:block;
+    top:0;
+    left:0;
+    content:"";
+    width:60px;
+    height:60px;
+  }
+  .actionBtn13 .tabs .more_ico:before {
+    background:url(http://css3studio.com/images/effect_ex/icon_more_2.png) center center no-repeat;
+    transition:all ease-in-out .5s;
+  }
+  .actionBtn13 .tabs .more_ico:after {
+    margin-left:60px;
+    background:url(http://css3studio.com/images/effect_ex/icon_more.png) center center no-repeat, #444;
+    transition:all ease-in-out .5s;
+  }
+  .actionBtn13 .tabs .paragraph {
+    position:relative;
+    height:50px;
+    width:208px;
+    margin-left:60px;
+    padding:5px;
+    background-color:#fff;
+  }
+  .actionBtn13 .tabs .paragraph .paragraph_tit {
+    color:#333;
+    font-size:18px;
+    font-weight:700;
+    line-height:18px;
+    text-transform:uppercase;
+  }
+  .actionBtn13 .tabs .paragraph .paragraph_txt {
+    display:-webkit-box;
+    overflow: hidden;
+    height:27px;
+    width:186px;
+    margin-top:5px;
+    color:#666;
+    font-size:13px;
+    line-height:13px;
+    word-break:break-all;
+  }
+  .line_clamp:after {
+    content:"...";
+    position:absolute;
+    bottom:0;
+    right:0;
+    background-color:#fff;
+    line-height:14px;
+    padding-left:3px;
+  }
+
+}

@@ -1,0 +1,19 @@
+
+.pulse-spin {
+  animation: pulse-spin linear 1.5s;
+  animation-iteration-count: 10;
+  transform-origin: 50% 50%;
+  animation-fill-mode:forwards;
+
+@keyframes pulse-spin {
+  0% {
+    transform:  translate(-25px,-21px)  rotate(0deg) scaleX(1.00) scaleY(1.00) ;
+  }
+  46% {
+    transform:  translate(-30px,-28px)  rotate(180deg) scaleX(1.50) scaleY(1.50) ;
+  }
+  100% {
+    transform:  translate(-26px,-23px)  rotate(360deg) scaleX(1.00) scaleY(1.00) ;
+  }
+ }
+}

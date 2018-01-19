@@ -1,0 +1,14 @@
+.contact-container {
+  form {
+    display: grid;
+    grid-template-columns: repeat(4, (100% / 4));
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      "Name Name Name Name"
+      "Email Email Phome Phone"
+      "Topic Topic Topic Topic"
+      "Text Text Text Text";
+  }
+
+
+}

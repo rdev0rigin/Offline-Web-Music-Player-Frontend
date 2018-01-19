@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "strict": false,
+    "noImplicitUseStrict": true,
+    "baseUrl": "/",
+    "outDir": "build/dist",
+    "module": "esnext",
+    "target": "es5",
+    "lib": ["es5", "ES2015", "esnext", "es2017", "dom"],
+    "sourceMap": true,
+    "allowJs": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "rootDir": "./",
+    "sourceRoot": "./src",
+    "forceConsistentCasingInFileNames": false,
+    "noImplicitReturns": false,
+    "noImplicitThis": false,
+    "noImplicitAny": false,
+    "suppressExcessPropertyErrors": true,
+    "strictNullChecks": false,
+    "suppressImplicitAnyIndexErrors": false,
+    "noUnusedLocals": false,
+    "skipDefaultLibCheck": false,
+    "experimentalDecorators": true,
+    "paths": {
+      "react": ["node_modules/@types/react"],
+      "react-redux": ["node_modules/@types/react"],
+      "env": ["./config"]
+    }
+  },
+  "exclude": [
+    "build/",
+    "micro-services",
+    "node_modules",
+    "build",
+    "_scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts"
+  ]
+}

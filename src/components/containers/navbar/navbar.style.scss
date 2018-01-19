@@ -1,0 +1,123 @@
+
+.banner-arrow-box {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 4;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  position: absolute;
+  bottom: 10px;
+  overflow-x: hidden;
+  animation: levitate alternate infinite 1s both ease-in-out;
+  z-index: 10;
+  img.banner-down-arrow {
+    height: 50px;
+    fill: white;
+  }
+}
+
+div.navbar-sticky {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  box-shadow: aliceblue 0px -2px 56px;
+  //@media only screen and (max-width: $SM) {
+  //  flex-direction: column;
+  //}
+  position: fixed;
+  width: 100%;
+  height: $navbar-height;
+  top: 0;
+  background: url('/images/intro-bg.jpg') fixed no-repeat 0 0;
+  background-size: cover;
+  border-bottom: $divider-color solid 10px;
+  opacity: 0;
+  z-index: 10;
+  transform: translateY(-200px);
+  @include transition(opacity, .6s, linear);
+
+  &.show {
+    transform: translateY(0px);
+    opacity: 1;
+    @include transition();
+  }
+
+  &.remove {
+    display: none;
+  }
+
+  #Skull-Top {
+    position: absolute;
+    width: 70%;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+
+  .nav-list {
+    font-size: 18px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style: none;
+    margin: 10px;
+
+
+    .nav-item {
+      height: 50px;
+      cursor: pointer;
+      font-family: $primary-font;
+      stroke: $primary-color-background;
+      line-height: 50px;
+      font-weight: 800;
+      stroke-width: 1px;
+      text-shadow: -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000;
+    }
+
+    .logo {
+      position: absolute;
+      top: 0;
+    }
+
+    .nav-button {
+      transform: translatex(20px);
+      z-index: 3;
+    }
+
+    .share {
+      transform: translatex(-20px);
+      z-index: 3;
+    }
+  }
+
+  .share:hover .share-drop-down {
+    transform: translatey(0);
+  }
+
+  .share-drop-down {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    top: 20px;
+    left: 50%;
+    transform: translatey(-140%);
+
+    @include transition();
+    svg {
+      //display: inline-block;
+      //width: 1em;
+      //height: 1em;
+      //stroke-width: 0;
+      //stroke: currentColor;
+      //fill: currentColor;
+    }
+  }
+}
