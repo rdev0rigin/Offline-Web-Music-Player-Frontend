@@ -89,15 +89,12 @@ export async function testAndSetAudioProps(soundFile: File): Promise<SoundMeta> 
 		const reader: FileReader = new FileReader();
 		reader.onloadend = (evt: Event) => {
 			if (reader.readyState === FileReader['DONE']) {
-				console.log('file reader DONE');
 				const urlString = new URL(reader.result);
 				const audioELe = new Audio(urlString.toString());
 				const response = {
 					duration: audioELe.duration,
-					data: reader.result,
 					encode: HEADER_TO_MIME(reader.result.slice(0, 6))
 				};
-				console.log('new sound', response);
 				resolve(response);
 			}
 		};

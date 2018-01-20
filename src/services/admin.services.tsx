@@ -90,10 +90,11 @@ export function uploadSoundFile(
 	privateSocket({
 		event: 'PRIVATE::FILE_UPLOAD',
 		payload: {
-			soundDetails: soundDetails,
-			file: file
+			sound_id: soundDetails._id,
+			data: file,
+			jwt: localStorage.getItem(DCM_CONFIG.jwtKey),
+			sessionId: localStorage.getItem(DCM_CONFIG.sessionKey)
 		},
-		jwt: localStorage.getItem(DCM_CONFIG.jwtKey),
 		callback: (response) => {
 			!response.ok
 				? alert('Error uploading file ' + response.message)

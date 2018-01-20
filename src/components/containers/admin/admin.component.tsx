@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { ReactElement, SyntheticEvent } from 'react';
+import { ReactElement } from 'react';
 import { getSoundsMetaData } from '../../../services/main.service';
 import { pauseSVG, playSVG } from '../../../assets/svgs';
 import { Howl } from 'howler';
 import { ADMIN_INITIAL_STATE, AdminComponentProps, AdminComponentState } from '../../../models/admin.model';
 import { testAndSetAudioProps } from '../../../utilities/utilities';
 import { SoundMeta } from '../../../models/sound.model';
-import { authorize, submitNewSound, updateTrackProp } from '../../../services/admin.services';
+import { authorize, removeSound, submitNewSound, updateTrackProp } from '../../../services/admin.services';
 import { ResponseTransport } from '../../../services/web-socket.service';
 
 export class AdminComponent extends React.Component<AdminComponentProps, AdminComponentState> {
@@ -21,6 +21,7 @@ export class AdminComponent extends React.Component<AdminComponentProps, AdminCo
 		super(props);
 		this.state = ADMIN_INITIAL_STATE;
 		this.soundsMetaCallback = this.soundsMetaCallback.bind(this);
+		this.deletionHandler = this.deletionHandler.bind(this);
 	}
 
 	public componentDidMount(): void {
@@ -59,6 +60,16 @@ export class AdminComponent extends React.Component<AdminComponentProps, AdminCo
 				dataReady: true
 			});
 		}
+	}
+
+	private deletionHandler(response: any): void {
+		const nextTracks = this.state.tracks.filter(track => track._id !== response.sound_id);
+		this.setState({
+			tracks: nextTracks
+		}, () => {
+			console.log('set state called!');
+		});
+
 	}
 
 	private async onSubmit(e: React.SyntheticEvent<MouseEvent>): Promise<void> {
@@ -148,6 +159,15 @@ export class AdminComponent extends React.Component<AdminComponentProps, AdminCo
 						key={sound._id.toString()}
 						className="track-details"
 					>
+						<div
+							className="delete-button"
+							onClick={(e) => {
+								console.log('delete track', sound._id);
+								removeSound(sound._id, this.deletionHandler);
+							}}
+						>
+							X
+						</div>
 						<div
 							className="track-play"
 							onClick={(e: any) => {

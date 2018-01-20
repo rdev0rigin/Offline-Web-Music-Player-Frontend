@@ -33,7 +33,9 @@ export class DComposedMusicApp extends React.Component<any, DComposedMusicAppSta
 		this.parallaxSub = this.initParallaxTimer$()
 			.distinctUntilChanged()
 			.subscribe(
-				this.onParallaxUpdate,
+				res => {
+					this.onParallaxUpdate(res);
+				},
 				(err) => console.log('ERROR: Parallax Error'),
 				() => clearInterval(this.scrollTimer));
 		this.formManager(NEW_CONTACT_DATA);
@@ -65,26 +67,29 @@ export class DComposedMusicApp extends React.Component<any, DComposedMusicAppSta
 			});
 	}
 
-	private onParallaxUpdate(scrollY) {
-		if (scrollY >= window.screen.height && !this.state.showSticky) {
+	private onParallaxUpdate(scrollY: number) {
+		const offset = 200;
+		console.log(scrollY >= ( window.screen.height - offset));
+		if (scrollY >= ( window.screen.height - offset) && !this.state.showSticky) {
+			console.log('calling show sticky');
 			window.requestAnimationFrame(() => {
 				this.setState({
 					showSticky: true
 				});
 			});
-		}
-		if (scrollY < window.screen.height && this.state.showSticky) {
+		} else if (scrollY < (window.screen.height - offset) && this.state.showSticky) {
+			console.log('calling hide sticky');
 			window.requestAnimationFrame(() => {
 				this.setState({
 					showSticky: false
 				});
 			});
 		}
-		window.requestAnimationFrame(() => {
-			this.setState({
-				scrollY: scrollY
-			});
-		});
+		// window.requestAnimationFrame(() => {
+		// 	this.setState({
+		// 		scrollY: scrollY
+		// 	});
+		// });
 	}
 
 	private formHandler(): FormHandler {
@@ -155,7 +160,6 @@ export class DComposedMusicApp extends React.Component<any, DComposedMusicAppSta
 				</div>
 				<About/>
 				<ContactComponent
-
 					onSubmit={this.formManager.submitHandler}
 					onChange={this.formManager.changeHandler}
 					onComplete={() => console.log('message sent')}

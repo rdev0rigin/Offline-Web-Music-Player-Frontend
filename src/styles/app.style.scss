@@ -1,6 +1,7 @@
 //@import './reboot';
 @import url('/fonts/fonts.css');
 
+
 $primary-color-background: rgb(16, 19, 23);
 $primary-font: 'Proza Libre', sans-serif;
 $article-family: 'Chelsea Market', cursive;
@@ -213,4 +214,4 @@ input[type=range]::-ms-track {
 //@import '/video/video.style';
 @import '../components/containers/admin/admin.style';
 @import '../components/containers/media-player/media-player.style';
-@impoty 'components/controlled/contact/contact.style';
+@import '../components/controlled/contact/contact.style';

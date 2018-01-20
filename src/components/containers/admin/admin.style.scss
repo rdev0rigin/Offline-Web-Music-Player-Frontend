@@ -3,6 +3,15 @@ $border-radius: 5%;
 .admin-component {
   text-align: center;
 
+  .delete-button {
+    float: right;
+    font-size: 2em;
+    width: 50px;
+    height: 50px;
+    color: white;
+    background: red;
+  }
+
   .new-track-form {
     background: gainsboro;
     display: flex;
