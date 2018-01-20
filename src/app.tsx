@@ -69,27 +69,24 @@ export class DComposedMusicApp extends React.Component<any, DComposedMusicAppSta
 
 	private onParallaxUpdate(scrollY: number) {
 		const offset = 200;
-		console.log(scrollY >= ( window.screen.height - offset));
 		if (scrollY >= ( window.screen.height - offset) && !this.state.showSticky) {
-			console.log('calling show sticky');
 			window.requestAnimationFrame(() => {
 				this.setState({
 					showSticky: true
 				});
 			});
 		} else if (scrollY < (window.screen.height - offset) && this.state.showSticky) {
-			console.log('calling hide sticky');
 			window.requestAnimationFrame(() => {
 				this.setState({
 					showSticky: false
 				});
 			});
 		}
-		// window.requestAnimationFrame(() => {
-		// 	this.setState({
-		// 		scrollY: scrollY
-		// 	});
-		// });
+		window.requestAnimationFrame(() => {
+			this.setState({
+				scrollY: scrollY
+			});
+		});
 	}
 
 	private formHandler(): FormHandler {
