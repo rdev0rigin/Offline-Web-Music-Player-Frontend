@@ -540,6 +540,7 @@ div.navbar-sticky {
       .media-player-container .controls-container div.bottom-panel .next {
         grid-area: next; }
       .media-player-container .controls-container div.bottom-panel div {
+        cursor: pointer;
         padding: 3px;
         border-radius: 100%;
         box-shadow: 5px -2px 1px -3px rgba(255, 255, 255, 0.35), 0 0 4px 3px rgba(0, 0, 0, 0.7), 6px -1px 0 -2px rgba(0, 0, 0, 0.3), 0 0 12px rgba(68, 168, 255, 0.7); }

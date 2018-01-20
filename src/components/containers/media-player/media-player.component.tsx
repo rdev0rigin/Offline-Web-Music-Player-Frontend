@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ReactElement } from 'react';
-import { Observable } from '@reactivex/rxjs';
+import * as Rx from '@reactivex/rxjs';
 import { getSoundsMetaData } from '../../../services/main.service';
 import { PlayListControlledComponent } from '../../controlled/playlist/playlist.compnent';
 import { AudioVisualizerComponent } from '../../controlled/visualizer/visualizer.component';
@@ -8,6 +8,7 @@ import { SoundMeta } from '../../../models/sound.model';
 import { MEDIA_PLAYER_INITIAL_STATE, MediaPlayerProps, MediaPlayerState, } from '../../../models/media-player.model';
 import { enlargeSVG, ffwdSVG, nextSVG, playSVG, prevSVG, rewindSVG, stopSVG, volumeMaxSVG } from '../../../assets/svgs';
 import { formatSeconds } from '../../../utilities/utilities';
+import { Observable } from '@reactivex/rxjs';
 
 export class MediaPlayerComponent extends React.Component<MediaPlayerProps, MediaPlayerState> {
 	public state: MediaPlayerState;
@@ -82,7 +83,13 @@ export class MediaPlayerComponent extends React.Component<MediaPlayerProps, Medi
 	}
 
 	private onSoundLoad(): void {
-		this.seekUpdater();
+		this.seekUpdater()
+			.subscribe((res) => {
+				console.log('interval!', res);
+				this.setState({
+					currentSeek:res
+				});
+			});
 		this.ctxUpdater()
 			.updater$.distinctUntilChanged()
 			.subscribe
@@ -93,7 +100,6 @@ export class MediaPlayerComponent extends React.Component<MediaPlayerProps, Medi
 		if (this.sound) {
 			this.sound.unload();
 		}
-		;
 		this.sound = new Howl({
 			src: dataString,
 			html5: true,
@@ -103,7 +109,7 @@ export class MediaPlayerComponent extends React.Component<MediaPlayerProps, Medi
 		this.setState({
 			dataReady: true,
 			currentTrack: soundDetails
-		});
+		}, this.onSoundLoad);
 	}
 
 	private ctxUpdater(): { updater$: Observable<Uint8Array>, stop: () => void } {
@@ -133,13 +139,15 @@ export class MediaPlayerComponent extends React.Component<MediaPlayerProps, Medi
 		};
 	}
 
-
-	private seekUpdater(): void {
-		this.seekTimer = setInterval(() => {
-			this.setState({
-				currentSeek: Math.trunc(this.sound.seek() as number),
-			});
-		}, 1000);
+	private seekUpdater(): Observable<number> {
+		// noinspection TypeScriptUnresolvedFunction
+		return Observable
+			.interval(10)
+			.map(() => {
+				// return Math.trunc(this.sound.seek() as number)
+				return this.sound.seek() as number;
+			})
+			.distinctUntilChanged();
 	}
 
 	private async selectionHandler(evt: React.SyntheticEvent<MouseEvent> | any, track: SoundMeta): Promise<void> {
@@ -310,7 +318,7 @@ export class MediaPlayerComponent extends React.Component<MediaPlayerProps, Medi
 					value={this.state.currentSeek}
 					min={0}
 					max={!!this.sound ? this.sound.duration() : 0}
-					step={1}
+					step={0.1}
 					onChange={(e) => {
 						this.sound.seek(parseInt(e.target.value, 8));
 					}}

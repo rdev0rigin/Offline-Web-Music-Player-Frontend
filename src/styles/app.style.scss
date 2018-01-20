@@ -45,7 +45,6 @@ $glow-secondary-color: rgba(255, 0, 25, 0.2);
   }
 }
 
-
 @mixin media-player-inner-glow() {
   box-shadow: inset 6px 1px 12px $glow-secondary-color;
 }
@@ -204,14 +203,11 @@ input[type=range]::-ms-track {
   }
 }
 
-
-
 @import '../components/containers/navbar/navbar.style';
 @import '../components/controlled/about/about.style';
 @import '../components/controlled/introduction/intro.style';
 @import '../components/containers/footer/footer.style';
 @import '../components/controlled/playlist/playlist.style';
-//@import '/video/video.style';
 @import '../components/containers/admin/admin.style';
 @import '../components/containers/media-player/media-player.style';
 @import '../components/controlled/contact/contact.style';
