@@ -336,6 +336,7 @@ div.navbar-sticky {
 .admin-component {
   text-align: center; }
   .admin-component .delete-button {
+    cursor: pointer;
     float: right;
     font-size: 2em;
     width: 50px;

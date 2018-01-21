@@ -8,7 +8,8 @@ import { SoundMeta } from '../models/sound.model';
 
 export function submitNewSound(
 	soundMeta: any,
-	soundFile: any
+	soundFile: any,
+	callback: (response: SoundMeta) => void
 ): void {
 	console.log('New Sound', soundMeta, soundFile);
 	privateSocket(
@@ -19,13 +20,14 @@ export function submitNewSound(
 				jwt: localStorage.getItem(DCM_CONFIG.jwtKey),
 				sessionId: localStorage.getItem(DCM_CONFIG.sessionKey)
 			},
-			callback: (response) => {
+			callback: (response: ResponseTransport) => {
 				if (response.ok) {
 					console.log('sound meta submitted');
 					uploadSoundFile(
 						response.payload,
 						soundFile
 					);
+					callback(response.payload);
 				}
 			}
 		}
@@ -112,6 +114,12 @@ export function removeSound(id: string, callback: (response: any) => void): void
 			jwt: localStorage.getItem(DCM_CONFIG.jwtKey),
 			sessionId: localStorage.getItem(DCM_CONFIG.sessionKey),
 		},
-		callback
+		callback: (response: ResponseTransport) => {
+			if (response.ok) {
+				callback(response.payload.response);
+			} else {
+				alert('Error: Deleting Sound');
+			}
+		}
 	});
 }

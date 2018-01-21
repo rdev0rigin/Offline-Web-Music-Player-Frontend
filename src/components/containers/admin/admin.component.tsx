@@ -21,11 +21,11 @@ export class AdminComponent extends React.Component<AdminComponentProps, AdminCo
 		super(props);
 		this.state = ADMIN_INITIAL_STATE;
 		this.soundsMetaCallback = this.soundsMetaCallback.bind(this);
+		this.newSoundHandler = this.newSoundHandler.bind(this);
 		this.deletionHandler = this.deletionHandler.bind(this);
 	}
 
 	public componentDidMount(): void {
-		// check for session and JWT
 		authorize((authorized: ResponseTransport) => {
 			if (!authorized.ok) {
 				this.props.history.goBack();
@@ -63,13 +63,21 @@ export class AdminComponent extends React.Component<AdminComponentProps, AdminCo
 	}
 
 	private deletionHandler(response: any): void {
+		console.log('deletion response', response);
 		const nextTracks = this.state.tracks.filter(track => track._id !== response.sound_id);
+		console.log('next tracks', nextTracks);
 		this.setState({
 			tracks: nextTracks
 		}, () => {
 			console.log('set state called!');
 		});
 
+	}
+
+	private newSoundHandler(response: SoundMeta): void {
+		this.setState({
+			tracks: [...this.state.tracks, response]
+		});
 	}
 
 	private async onSubmit(e: React.SyntheticEvent<MouseEvent>): Promise<void> {
@@ -84,7 +92,7 @@ export class AdminComponent extends React.Component<AdminComponentProps, AdminCo
 		};
 		if (soundFile.size < 2 * (1024 * 1000 * 1000)) {
 			console.log('submitting, ', soundMeta, soundFile);
-			submitNewSound(soundMeta, soundFile);
+			submitNewSound(soundMeta, soundFile, this.newSoundHandler);
 		} else {
 			alert('File size must be under 2GBs, please.');
 		}
@@ -93,7 +101,6 @@ export class AdminComponent extends React.Component<AdminComponentProps, AdminCo
 	private onPlay(e: React.SyntheticEvent<MouseEvent>, id: string) {
 		if (this.state.currentTrack._id !== id) {
 			this.sound.unload();
-
 		} else {
 			if (this.sound.playing()) {
 				this.sound.play();
