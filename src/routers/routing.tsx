@@ -3,8 +3,6 @@ import { Route, Switch } from 'react-router';
 import { AdminComponent } from '../components/containers/admin/admin.component';
 import { LoginComponent } from '../components/auth/login.component';
 import { DCM_CONFIG } from '../settings/config';
-import { MediaPlayerComponent } from '../components/containers/media-player/media-player.component';
-import DComposedMusicApp from '../app';
 
 export const routerSwitch = (props) => (
 	<Switch>

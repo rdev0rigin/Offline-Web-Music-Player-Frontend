@@ -13,7 +13,7 @@ import { ContactComponent } from './components/controlled/contact/contact.compon
 import { FormHandler, InputModel, NEW_CONTACT_DATA } from './models/form.model';
 import { FooterComponent } from './components/containers/footer/footer.component';
 
-export class DComposedMusicApp extends React.Component<any, DComposedMusicAppState> {
+export class DComposedMusicApp extends React.Component<{}, DComposedMusicAppState> {
 	public state: DComposedMusicAppState;
 	private scrollTimer;
 	private loader: LoaderAnimation;
@@ -22,6 +22,7 @@ export class DComposedMusicApp extends React.Component<any, DComposedMusicAppSta
 
 	// noinspection JSAnnotator
 	public constructor(public props: any) {
+		// noinspection TypeScriptValidateTypes
 		super(props);
 		this.state = APP_INITIAL_STATE;
 		this.renderPrimaryLayout = this.renderPrimaryLayout.bind(this);
@@ -156,11 +157,6 @@ export class DComposedMusicApp extends React.Component<any, DComposedMusicAppSta
 					</div>
 				</div>
 				<About/>
-				<ContactComponent
-					onSubmit={this.formManager.submitHandler}
-					onChange={this.formManager.changeHandler}
-					onComplete={() => console.log('message sent')}
-				/>
 				<FooterComponent/>
 				<Navbar
 					shareLinksMap={SHARE_LINKS()}

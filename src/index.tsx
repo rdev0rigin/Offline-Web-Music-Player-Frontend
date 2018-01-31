@@ -1,4 +1,6 @@
+import {merge} from 'lodash';
 
+console.log('merge', merge({}, {foo: 'bar'}));
 require('smoothscroll-polyfill').polyfill();
 
 import { initializeWorker } from './utilities/registerServiceWorker';
@@ -19,8 +21,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './app';
 import { Router } from 'react-router';
-
 import history from './routers/router.history';
+
 function boot(): Element {
 
 	return(

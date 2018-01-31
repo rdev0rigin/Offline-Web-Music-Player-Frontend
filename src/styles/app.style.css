@@ -276,8 +276,10 @@ div.navbar-sticky {
     @media screen and (max-width: 600px) {
       .footer-component .lists {
         flex-direction: column;
+        text-align: center;
         justify-content: space-around; } }
   .footer-component .copy-rights {
+    text-align: center;
     font-family: "Proza Libre", sans-serif;
     font-weight: 600;
     font-size: 16px;

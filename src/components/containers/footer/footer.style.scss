@@ -28,12 +28,14 @@
     }
     @media screen and (max-width: 600px) {
       flex-direction: column;
+      text-align: center;
       justify-content: space-around;
     }
 
   }
 
   .copy-rights {
+    text-align: center;
     font-family: $primary-font;
     font-weight: 600;
     font-size: 16px;
